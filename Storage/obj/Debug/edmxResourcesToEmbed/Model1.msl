@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище I002ModelContainer" CdmEntityContainer="ModelStorage">
+    <EntitySetMapping Name="Coming">
+      <EntityTypeMapping TypeName="I002Model.Coming">
+        <MappingFragment StoreEntitySet="Coming">
+          <ScalarProperty Name="IDComing" ColumnName="IDComing" />
+          <ScalarProperty Name="IDСounteragent" ColumnName="IDСounteragent" />
+          <ScalarProperty Name="DateComing" ColumnName="DateComing" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="I002Model.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Removed" ColumnName="Removed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductComing">
+      <EntityTypeMapping TypeName="I002Model.ProductComing">
+        <MappingFragment StoreEntitySet="ProductComing">
+          <ScalarProperty Name="IDProductComing" ColumnName="IDProductComing" />
+          <ScalarProperty Name="IDComing" ColumnName="IDComing" />
+          <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductOnStorage">
+      <EntityTypeMapping TypeName="I002Model.ProductOnStorage">
+        <MappingFragment StoreEntitySet="ProductOnStorage">
+          <ScalarProperty Name="IdProductOnStorage" ColumnName="IdProductOnStorage" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductPurchase">
+      <EntityTypeMapping TypeName="I002Model.ProductPurchase">
+        <MappingFragment StoreEntitySet="ProductPurchase">
+          <ScalarProperty Name="IDProductPurchase" ColumnName="IDProductPurchase" />
+          <ScalarProperty Name="IDPurchase" ColumnName="IDPurchase" />
+          <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchase">
+      <EntityTypeMapping TypeName="I002Model.Purchase">
+        <MappingFragment StoreEntitySet="Purchase">
+          <ScalarProperty Name="IDPurchase" ColumnName="IDPurchase" />
+          <ScalarProperty Name="IDCounteragent" ColumnName="IDCounteragent" />
+          <ScalarProperty Name="DatePurchase" ColumnName="DatePurchase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="I002Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сounteragent">
+      <EntityTypeMapping TypeName="I002Model.Сounteragent">
+        <MappingFragment StoreEntitySet="Сounteragent">
+          <ScalarProperty Name="IdСounteragent" ColumnName="IdСounteragent" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="INN" ColumnName="INN" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Removed" ColumnName="Removed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

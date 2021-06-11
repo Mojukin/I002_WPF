@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище I002Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Coming">
+    <Key>
+      <PropertyRef Name="IDComing" />
+    </Key>
+    <Property Name="IDComing" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDСounteragent" Type="int" />
+    <Property Name="DateComing" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ArticleNumber" />
+    </Key>
+    <Property Name="ArticleNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Removed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductComing">
+    <Key>
+      <PropertyRef Name="IDProductComing" />
+    </Key>
+    <Property Name="IDProductComing" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDComing" Type="int" />
+    <Property Name="IDProduct" Type="int" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductOnStorage">
+    <Key>
+      <PropertyRef Name="IdProductOnStorage" />
+    </Key>
+    <Property Name="IdProductOnStorage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdProduct" Type="int" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductPurchase">
+    <Key>
+      <PropertyRef Name="IDProductPurchase" />
+    </Key>
+    <Property Name="IDProductPurchase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPurchase" Type="int" />
+    <Property Name="IDProduct" Type="int" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="IDPurchase" />
+    </Key>
+    <Property Name="IDPurchase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCounteragent" Type="int" Nullable="false" />
+    <Property Name="DatePurchase" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Сounteragent">
+    <Key>
+      <PropertyRef Name="IdСounteragent" />
+    </Key>
+    <Property Name="IdСounteragent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="INN" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Role" Type="int" Nullable="false" />
+    <Property Name="Removed" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Coming_Сounteragent">
+    <End Role="Сounteragent" Type="Self.Сounteragent" Multiplicity="0..1" />
+    <End Role="Coming" Type="Self.Coming" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сounteragent">
+        <PropertyRef Name="IdСounteragent" />
+      </Principal>
+      <Dependent Role="Coming">
+        <PropertyRef Name="IDСounteragent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductComing_Coming">
+    <End Role="Coming" Type="Self.Coming" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductComing" Type="Self.ProductComing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coming">
+        <PropertyRef Name="IDComing" />
+      </Principal>
+      <Dependent Role="ProductComing">
+        <PropertyRef Name="IDComing" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductComing_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProductComing" Type="Self.ProductComing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ArticleNumber" />
+      </Principal>
+      <Dependent Role="ProductComing">
+        <PropertyRef Name="IDProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductOnStorage_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProductOnStorage" Type="Self.ProductOnStorage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ArticleNumber" />
+      </Principal>
+      <Dependent Role="ProductOnStorage">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPurchase_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProductPurchase" Type="Self.ProductPurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ArticleNumber" />
+      </Principal>
+      <Dependent Role="ProductPurchase">
+        <PropertyRef Name="IDProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPurchase_Purchase">
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="0..1" />
+    <End Role="ProductPurchase" Type="Self.ProductPurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase">
+        <PropertyRef Name="IDPurchase" />
+      </Principal>
+      <Dependent Role="ProductPurchase">
+        <PropertyRef Name="IDPurchase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Сounteragent">
+    <End Role="Сounteragent" Type="Self.Сounteragent" Multiplicity="1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сounteragent">
+        <PropertyRef Name="IdСounteragent" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IDCounteragent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище I002ModelContainer">
+    <EntitySet Name="Coming" EntityType="Self.Coming" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductComing" EntityType="Self.ProductComing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductOnStorage" EntityType="Self.ProductOnStorage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductPurchase" EntityType="Self.ProductPurchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Сounteragent" EntityType="Self.Сounteragent" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Coming_Сounteragent" Association="Self.FK_Coming_Сounteragent">
+      <End Role="Сounteragent" EntitySet="Сounteragent" />
+      <End Role="Coming" EntitySet="Coming" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductComing_Coming" Association="Self.FK_ProductComing_Coming">
+      <End Role="Coming" EntitySet="Coming" />
+      <End Role="ProductComing" EntitySet="ProductComing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductComing_Product" Association="Self.FK_ProductComing_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductComing" EntitySet="ProductComing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOnStorage_Product" Association="Self.FK_ProductOnStorage_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductOnStorage" EntitySet="ProductOnStorage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPurchase_Product" Association="Self.FK_ProductPurchase_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductPurchase" EntitySet="ProductPurchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPurchase_Purchase" Association="Self.FK_ProductPurchase_Purchase">
+      <End Role="Purchase" EntitySet="Purchase" />
+      <End Role="ProductPurchase" EntitySet="ProductPurchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Сounteragent" Association="Self.FK_Purchase_Сounteragent">
+      <End Role="Сounteragent" EntitySet="Сounteragent" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
